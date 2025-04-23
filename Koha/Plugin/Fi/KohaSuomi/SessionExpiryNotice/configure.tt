@@ -1,45 +1,109 @@
 [% USE KohaDates %]
 [% INCLUDE 'doc-head-open.inc' %]
- <title>IntranetUserJS: Session expiry notice Configuration</title>
+<title>
+    [% IF lang == 'sv-SE' %]
+        IntranetUserJS: Session expiry notice Konfiguration
+    [% ELSIF lang == 'fi-FI' %]
+        IntranetUserJS: Session expiry notice Asetukset
+    [% ELSE %]
+        IntranetUserJS: Session expiry notice Configuration
+    [% END %]
+</title>
 [% INCLUDE 'doc-head-close.inc' %]
 </head>
 <body>
 [% INCLUDE 'header.inc' %]
 [% INCLUDE 'cat-search.inc' %]
 
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Home</a> &rsaquo; <a href="/cgi-bin/koha/plugins/plugins-home.pl">Plugins</a> &rsaquo; IntranetUserJS: Session expiry notice &rsaquo; Configuration</div>
+<div id="breadcrumbs">
+    <a href="/cgi-bin/koha/mainpage.pl">
+        [% IF lang == 'sv-SE' %]
+            Hem
+        [% ELSIF lang == 'fi-FI' %]
+            Koti
+        [% ELSE %]
+            Home
+        [% END %]
+    </a> &rsaquo; 
+    <a href="/cgi-bin/koha/plugins/plugins-home.pl">
+        [% IF lang == 'sv-SE' %]
+            Plugins
+        [% ELSIF lang == 'fi-FI' %]
+            Lisäosat
+        [% ELSE %]
+            Plugins
+        [% END %]
+    </a> &rsaquo; 
+    [% IF lang == 'sv-SE' %]
+        IntranetUserJS: Session expiry notice
+    [% ELSIF lang == 'fi-FI' %]
+        IntranetUserJS: Session expiry notice
+    [% ELSE %]
+        IntranetUserJS: Session expiry notice
+    [% END %] &rsaquo; 
+    [% IF lang == 'sv-SE' %]
+        Konfiguration
+    [% ELSIF lang == 'fi-FI' %]
+        Asetukset
+    [% ELSE %]
+        Configuration
+    [% END %]
+</div>
 
 <div id="doc3" style="margin-left: 10px;">
 
-    <!-- Notice our form here has no 'action', this is good, it means that our forms will always get passed back to 'plugins/run.pl'. You could hard code it instead if you prefer -->
     <form method="get">
-        <!-- Always pass these two parameters so the plugin system knows what to execute! -->
         <input type="hidden" name="class" value="[% CLASS %]"/>
         <input type="hidden" name="method" value="[% METHOD %]"/>
 
         <p>
-
-        <label for="config_param_a">Ilmoitusaika (sekuntia, timeout-järjestelmäasetusta vastaava aika, oletus 1800s): </label>
+        <label for="config_param_a">
+            [% IF lang == 'sv-SE' %]
+                Meddelandetid (sekunder, motsvarande timeout-systeminställning, standard 1800s):
+            [% ELSIF lang == 'fi-FI' %]
+                Ilmoitusaika (sekuntia, timeout-järjestelmäasetusta vastaava aika, oletus 1800s):
+            [% ELSE %]
+                Notice time (seconds, matching timeout system preference, default 1800s):
+            [% END %]
+        </label>
         <input type="text" name="config_param_a" value="[% config_param_a %]" />
-
-        <p>
+        </p>
 
         <input type="hidden" name="save" value="1" />
 
-        <input type="submit" value="Save configuration" />
+        <input type="submit" value="[% IF lang == 'sv-SE' %]Spara konfiguration[% ELSIF lang == 'fi-FI' %]Tallenna asetukset[% ELSE %]Save configuration[% END %]" />
     </form>
 
     <hr/>
 
     <p>
-        <h5>Upgrade status</h5>
+        <h5>
+            [% IF lang == 'sv-SE' %]
+                Uppgraderingsstatus
+            [% ELSIF lang == 'fi-FI' %]
+                Päivityksen tila
+            [% ELSE %]
+                Upgrade status
+            [% END %]
+        </h5>
         [% IF last_upgraded %]
-            Plugin was last upgraded on this system on [% last_upgraded | $KohaDates with_hours => 1 %]
+            [% IF lang == 'sv-SE' %]
+                Pluginet uppgraderades senast på detta system den [% last_upgraded | $KohaDates with_hours => 1 %]
+            [% ELSIF lang == 'fi-FI' %]
+                Liitännäinen päivitettiin viimeksi tässä järjestelmässä [% last_upgraded | $KohaDates with_hours => 1 %]
+            [% ELSE %]
+                Plugin was last upgraded on this system on [% last_upgraded | $KohaDates with_hours => 1 %]
+            [% END %]
         [% ELSE %]
-            Plugin has never been upgraded.
+            [% IF lang == 'sv-SE' %]
+                Pluginet har aldrig uppgraderats.
+            [% ELSIF lang == 'fi-FI' %]
+                Liitännäistä ei ole koskaan päivitetty.
+            [% ELSE %]
+                Plugin has never been upgraded.
+            [% END %]
         [% END %]
     </p>
 </div>
 
 [% INCLUDE 'intranet-bottom.inc' %]
-
