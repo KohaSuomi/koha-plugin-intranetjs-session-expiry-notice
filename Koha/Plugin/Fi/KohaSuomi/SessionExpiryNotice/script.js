@@ -17,14 +17,36 @@ $(document).ready(function() {
         // Check if there are 5 minutes left
         if (minutesDifference <= 5 && timeoutAlertStatus == 0) {
             localStorage.setItem('KohaTimeoutAlertStatus', 1);
-            if(!alert('Istunto vanhenee klo ' + timeoutTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) +'. Paina OK ja tee Kohassa jokin toiminto esim. etusivun lataaminen jatkaaksesi istuntoa.')) {
-  
+            let userLanguage = $('html').attr('lang') || 'fi-FI'; // Default to English if language is not set
+            let warningMessage;
+
+            if (userLanguage === 'fi-FI') {
+              warningMessage = 'Istunto vanhenee klo ' + timeoutTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + '. Paina OK ja tee Kohassa jokin toiminto esim. etusivun lataaminen jatkaaksesi istuntoa.';
+            } else if (userLanguage === 'sv-SE') {
+              warningMessage = 'Sessionen går ut kl. ' + timeoutTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + '. Tryck på OK och gör något i Koha, till exempel ladda om startsidan, för att fortsätta sessionen.';
+            } else {
+              warningMessage = 'Session will expire at ' + timeoutTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + '. Press OK and perform an action in Koha, such as reloading the homepage, to continue the session.';
+            }
+
+            if (!alert(warningMessage)) {
+              // No action needed here, alert is just for notification
             }
         }
         // Check if timeoutTime has gone and display new message
         if (currentTime > timeoutTime && timeoutAlertStatus != 2){
             localStorage.setItem('KohaTimeoutAlertStatus', 2);
-            if(!alert('Istunto vanhentunut klo ' + timeoutTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) +'. Paina OK ja kirjaudu uudelleen Kohaan.')) {
+            let userLanguage = $('html').attr('lang') || 'fi-FI'; // Default to English if language is not set
+            let timeoutMessage;
+
+            if (userLanguage === 'fi-FI') {
+              timeoutMessage = 'Istunto vanhentunut klo ' + timeoutTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + '. Paina OK ja kirjaudu uudelleen Kohaan.';
+            } else if (userLanguage === 'sv-SE') {
+              timeoutMessage = 'Sessionen gick ut kl. ' + timeoutTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + '. Tryck på OK och logga in på Koha igen.';
+            } else {
+              timeoutMessage = 'Session expired at ' + timeoutTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) + '. Press OK and log in to Koha again.';
+            }
+
+            if (!alert(timeoutMessage)) {
               window.location.href = window.location.href;
             }
         }
