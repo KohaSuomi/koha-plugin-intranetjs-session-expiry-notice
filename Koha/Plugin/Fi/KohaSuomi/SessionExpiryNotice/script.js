@@ -25,7 +25,7 @@ $(document).ready(function() {
         if (currentTime > timeoutTime && timeoutAlertStatus != 2){
             localStorage.setItem('KohaTimeoutAlertStatus', 2);
             if(!alert('Istunto vanhentunut klo ' + timeoutTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) +'. Paina OK ja kirjaudu uudelleen Kohaan.')) {
-            
+              window.location.href = window.location.href;
             }
         }
       }
