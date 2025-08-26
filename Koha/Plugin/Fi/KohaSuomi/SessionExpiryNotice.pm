@@ -18,9 +18,9 @@ my $description = "";
 my $lang = C4::Languages::getlanguage() ||'fi-FI';
 
 if ($lang eq 'sv-SE') {
-    $description = "Skapar ett meddelande i ett popup-fönster i personalgränssnittet för att informera användaren om att sessionen håller på att gå ut. Skriptet varnar användaren fem minuter innan sessionen går ut och igen när sessionen har gått ut. Tiden för varningen kan ändras i plugin-inställningarna, där den bör matcha systeminställningen för timeout. (Local databases, Täti)";
+    $description = "Skapar ett meddelande i ett popup-fönster i personalgränssnittet för att informera användaren om att sessionen håller på att gå ut. Skriptet varnar användaren fem minuter innan sessionen går ut och igen när sessionen har gått ut. Tiden för varningen kan ändras i plugin-inställningarna, där den bör matcha systeminställningen för timeout. (Lokala databaser, Täti)";
 } elsif ($lang eq 'en') {
-    $description = "Creates a notification in a popup window in the staff interface to inform the logged-in user that their session is about to expire. The script warns the user five minutes before the session expires and again after it has expired. The warning time can be adjusted in the plugin settings to match the system timeout configuration. (Lokala databaser, Täti)";
+    $description = "Creates a notification in a popup window in the staff interface to inform the logged-in user that their session is about to expire. The script warns the user five minutes before the session expires and again after it has expired. The warning time can be adjusted in the plugin settings to match the system timeout configuration. (Local database, Täti)";
 } else {
     $description = "Luo ilmoituksen popup-ikkunaan virkailijaliittymään kirjautuneen käyttäjän istunnon vanhenemisesta. Skripti ilmoittaa vanhenemisesta viisi minuuttia etukäteen ja uudelleen istunnon vanhennettua. Ilmoitusaikaa voi muuttaa pluginin asetuksella, johon tulee täyttää kimpan timeout-järjestelmäasetusta vastaava aika. (Paikalliskannat, Täti)";
 }
