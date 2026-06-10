@@ -9,21 +9,10 @@ use base qw(Koha::Plugins::Base);
 use C4::Context;
 use utf8;
 use File::Slurp;
+use C4::Languages;
 
 ## Here we set our plugin version
 our $VERSION = "1.0.0";
-
-my $description = "";
-
-my $lang = C4::Languages::getlanguage() ||'fi-FI';
-
-if ($lang eq 'sv-SE') {
-    $description = "Skapar ett meddelande i ett popup-fönster i personalgränssnittet för att informera användaren om att sessionen håller på att gå ut. Skriptet varnar användaren fem minuter innan sessionen går ut och igen när sessionen har gått ut. Tiden för varningen kan ändras i plugin-inställningarna, där den bör matcha systeminställningen för timeout. (Lokala databaser, Täti)";
-} elsif ($lang eq 'en') {
-    $description = "Creates a notification in a popup window in the staff interface to inform the logged-in user that their session is about to expire. The script warns the user five minutes before the session expires and again after it has expired. The warning time can be adjusted in the plugin settings to match the system timeout configuration. (Local database, Täti)";
-} else {
-    $description = "Luo ilmoituksen popup-ikkunaan virkailijaliittymään kirjautuneen käyttäjän istunnon vanhenemisesta. Skripti ilmoittaa vanhenemisesta viisi minuuttia etukäteen ja uudelleen istunnon vanhennettua. Ilmoitusaikaa voi muuttaa pluginin asetuksella, johon tulee täyttää kimpan timeout-järjestelmäasetusta vastaava aika. (Paikalliskannat, Täti)";
-}
 
 ## Here is our metadata, some keys are required, some are optional
 our $metadata = {
@@ -34,8 +23,27 @@ our $metadata = {
     minimum_version => '23.11',
     maximum_version => '',
     version         => $VERSION,
-    description     => $description,
+    description     => "Creates a notification in a popup window in the staff interface to inform the logged-in user that their session is about to expire. The script warns the user five minutes before the session expires and again after it has expired. The warning time can be adjusted in the plugin settings to match the system timeout configuration. (Local databases, Täti)",
 };
+
+sub get_localized_metadata {
+    my ($self) = @_;
+    my $lang = C4::Languages::getlanguage() || 'en';
+    my ($name, $description);
+
+    if ($lang eq 'sv-SE') {
+        $name = "IntranetUserJS: Meddelande om sessionsutgång";
+        $description = "Skapar ett meddelande i ett popup-fönster i personalgränssnittet för att informera användaren om att sessionen håller på att gå ut. Skriptet varnar användaren fem minuter innan sessionen går ut och igen när sessionen har gått ut. Tiden för varningen kan ändras i plugin-inställningarna, där den bör matcha systeminställningen för timeout. (Lokala databaser, Täti)";
+    
+    } elsif ($lang eq 'fi-FI' ) {
+        $name = "IntranetUserJS: Istunnon vanhentumisilmoitus";
+        $description = "Luo ilmoituksen popup-ikkunaan virkailijaliittymään kirjautuneen käyttäjän istunnon vanhenemisesta. Skripti ilmoittaa vanhenemisesta viisi minuuttia etukäteen ja uudelleen istunnon vanhennettua. Ilmoitusaikaa voi muuttaa pluginin asetuksella, johon tulee täyttää kimpan timeout-järjestelmäasetusta vastaava aika. (Paikalliskannat, Täti)";
+    } else {
+        $name = "IntranetUserJS: Session expiry notice";
+        $description = "Creates a notification in a popup window in the staff interface to inform the logged-in user that their session is about to expire. The script warns the user five minutes before the session expires and again after it has expired. The warning time can be adjusted in the plugin settings to match the system timeout configuration. (Local databases, Täti)";
+    }
+    return ($name, $description);
+}
 
 ## This is the minimum code required for a plugin's 'new' method
 ## More can be added, but none should be removed
@@ -50,6 +58,10 @@ sub new {
     ## This runs some additional magic and checking
     ## and returns our actual 
     my $self = $class->SUPER::new($args);
+
+    my ($name, $description) = $self->get_localized_metadata();
+    $self->{'metadata'}->{'name'} = $name;
+    $self->{'metadata'}->{'description'} = $description;
 
     return $self;
 }

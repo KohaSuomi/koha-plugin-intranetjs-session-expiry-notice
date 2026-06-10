@@ -1,12 +1,17 @@
+[% TRY %]
+    [% PROCESS "$PLUGIN_DIR/i18n/${LANG}.inc" %]
+[% CATCH %]
+    [% PROCESS "$PLUGIN_DIR/i18n/default.inc" %]
+[% END %]
 [% USE KohaDates %]
 [% INCLUDE 'doc-head-open.inc' %]
 <title>
     [% IF lang == 'sv-SE' %]
-        IntranetUserJS: Session expiry notice Konfiguration
+        [% T.configure_1 %]
     [% ELSIF lang == 'fi-FI' %]
-        IntranetUserJS: Session expiry notice Asetukset
+        [% T.configure_2 %]
     [% ELSE %]
-        IntranetUserJS: Session expiry notice Configuration
+        [% T.configure_3 %]
     [% END %]
 </title>
 [% INCLUDE 'doc-head-close.inc' %]
@@ -18,35 +23,35 @@
 <div id="breadcrumbs">
     <a href="/cgi-bin/koha/mainpage.pl">
         [% IF lang == 'sv-SE' %]
-            Hem
+            [% T.configure_4 %]
         [% ELSIF lang == 'fi-FI' %]
-            Koti
+            [% T.configure_5 %]
         [% ELSE %]
-            Home
+            [% T.configure_6 %]
         [% END %]
     </a> &rsaquo; 
     <a href="/cgi-bin/koha/plugins/plugins-home.pl">
         [% IF lang == 'sv-SE' %]
-            Plugins
+            [% T.configure_7 %]
         [% ELSIF lang == 'fi-FI' %]
-            Lisäosat
+            [% T.configure_8 %]
         [% ELSE %]
-            Plugins
+            [% T.configure_7 %]
         [% END %]
     </a> &rsaquo; 
     [% IF lang == 'sv-SE' %]
-        IntranetUserJS: Session expiry notice
+        [% T.configure_9 %]
     [% ELSIF lang == 'fi-FI' %]
-        IntranetUserJS: Session expiry notice
+        [% T.configure_9 %]
     [% ELSE %]
-        IntranetUserJS: Session expiry notice
+        [% T.configure_9 %]
     [% END %] &rsaquo; 
     [% IF lang == 'sv-SE' %]
-        Konfiguration
+        [% T.configure_10 %]
     [% ELSIF lang == 'fi-FI' %]
-        Asetukset
+        [% T.configure_11 %]
     [% ELSE %]
-        Configuration
+        [% T.configure_12 %]
     [% END %]
 </div>
 
@@ -59,11 +64,11 @@
         <p>
         <label for="config_param_a">
             [% IF lang == 'sv-SE' %]
-                Meddelandetid (sekunder, motsvarande timeout-systeminställning, standard 1800s):
+                [% T.configure_13 %]
             [% ELSIF lang == 'fi-FI' %]
-                Ilmoitusaika (sekuntia, timeout-järjestelmäasetusta vastaava aika, oletus 1800s):
+                [% T.configure_14 %]
             [% ELSE %]
-                Notice time (seconds, matching timeout system preference, default 1800s):
+                [% T.configure_15 %]
             [% END %]
         </label>
         <input type="text" name="config_param_a" value="[% config_param_a %]" />
@@ -79,11 +84,11 @@
     <p>
         <h5>
             [% IF lang == 'sv-SE' %]
-                Uppgraderingsstatus
+                [% T.configure_16 %]
             [% ELSIF lang == 'fi-FI' %]
-                Päivityksen tila
+                [% T.configure_17 %]
             [% ELSE %]
-                Upgrade status
+                [% T.configure_18 %]
             [% END %]
         </h5>
         [% IF last_upgraded %]
@@ -96,11 +101,11 @@
             [% END %]
         [% ELSE %]
             [% IF lang == 'sv-SE' %]
-                Pluginet har aldrig uppgraderats.
+                [% T.configure_19 %]
             [% ELSIF lang == 'fi-FI' %]
-                Liitännäistä ei ole koskaan päivitetty.
+                [% T.configure_20 %]
             [% ELSE %]
-                Plugin has never been upgraded.
+                [% T.configure_21 %]
             [% END %]
         [% END %]
     </p>
