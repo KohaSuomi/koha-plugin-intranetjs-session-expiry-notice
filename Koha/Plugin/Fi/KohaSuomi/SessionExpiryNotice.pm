@@ -33,14 +33,14 @@ sub get_localized_metadata {
 
     if ($lang eq 'sv-SE') {
         $name = "IntranetUserJS: Meddelande om sessionsutgång";
-        $description = "Skapar ett meddelande i ett popup-fönster i personalgränssnittet för att informera användaren om att sessionen håller på att gå ut. Skriptet varnar användaren fem minuter innan sessionen går ut och igen när sessionen har gått ut. Tiden för varningen kan ändras i plugin-inställningarna, där den bör matcha systeminställningen för timeout. (Lokala databaser, Täti)";
+        $description = "Informerar användaren om att sessionen håller på att gå ut samt när den gått ut. Meddelandet ges fem minuter innan sessionen går ut och igen när sessionen har gått ut. Tidsgränsen kan ändras i plugin-inställningarna enligt systeminställningen för timeout. (Lokala databaser, Täti)";
     
     } elsif ($lang eq 'fi-FI' ) {
         $name = "IntranetUserJS: Istunnon vanhentumisilmoitus";
-        $description = "Luo ilmoituksen popup-ikkunaan virkailijaliittymään kirjautuneen käyttäjän istunnon vanhenemisesta. Skripti ilmoittaa vanhenemisesta viisi minuuttia etukäteen ja uudelleen istunnon vanhennettua. Ilmoitusaikaa voi muuttaa pluginin asetuksella, johon tulee täyttää kimpan timeout-järjestelmäasetusta vastaava aika. (Paikalliskannat, Täti)";
+        $description = "Ilmoittaa käyttäjälle lähestyvästä istunnon vanhenemisesta ja sen vanhennuttua. Ilmoitus annetaan viisi minuuttia etukäteen ja uudelleen istunnon vanhennuttua. Aikakatkaisun pituus pitää määrittää liitännäisen asetukseen, johon tulee kimpan timeout-järjestelmäasetusta vastaava aika. (Paikalliskannat, Täti)";
     } else {
         $name = "IntranetUserJS: Session expiry notice";
-        $description = "Creates a notification in a popup window in the staff interface to inform the logged-in user that their session is about to expire. The script warns the user five minutes before the session expires and again after it has expired. The warning time can be adjusted in the plugin settings to match the system timeout configuration. (Local databases, Täti)";
+        $description = "Creates a notification in a popup window in the staff interface to inform the logged-in user that their session is about to expire. The script warns the user five minutes before the session expires and again after it has expired. The timeout should be adjusted in the plugin settings to match the timeout system preference. (Local databases, Täti)";
     }
     return ($name, $description);
 }

@@ -6,13 +6,7 @@
 [% USE KohaDates %]
 [% INCLUDE 'doc-head-open.inc' %]
 <title>
-    [% IF lang == 'sv-SE' %]
-        [% T.configure_1 %]
-    [% ELSIF lang == 'fi-FI' %]
-        [% T.configure_2 %]
-    [% ELSE %]
-        [% T.configure_3 %]
-    [% END %]
+    [% T.configure_1 %] [% T.configure_5 %]
 </title>
 [% INCLUDE 'doc-head-close.inc' %]
 </head>
@@ -22,37 +16,13 @@
 
 <div id="breadcrumbs">
     <a href="/cgi-bin/koha/mainpage.pl">
-        [% IF lang == 'sv-SE' %]
-            [% T.configure_4 %]
-        [% ELSIF lang == 'fi-FI' %]
-            [% T.configure_5 %]
-        [% ELSE %]
-            [% T.configure_6 %]
-        [% END %]
+        [% T.configure_2 %]
     </a> &rsaquo; 
     <a href="/cgi-bin/koha/plugins/plugins-home.pl">
-        [% IF lang == 'sv-SE' %]
-            [% T.configure_7 %]
-        [% ELSIF lang == 'fi-FI' %]
-            [% T.configure_8 %]
-        [% ELSE %]
-            [% T.configure_7 %]
-        [% END %]
+        [% T.configure_3 %]
     </a> &rsaquo; 
-    [% IF lang == 'sv-SE' %]
-        [% T.configure_9 %]
-    [% ELSIF lang == 'fi-FI' %]
-        [% T.configure_9 %]
-    [% ELSE %]
-        [% T.configure_9 %]
-    [% END %] &rsaquo; 
-    [% IF lang == 'sv-SE' %]
-        [% T.configure_10 %]
-    [% ELSIF lang == 'fi-FI' %]
-        [% T.configure_11 %]
-    [% ELSE %]
-        [% T.configure_12 %]
-    [% END %]
+    [% T.configure_4 %] &rsaquo;
+    [% T.configure_5 %]
 </div>
 
 <div id="doc3" style="margin-left: 10px;">
@@ -63,13 +33,7 @@
 
         <p>
         <label for="config_param_a">
-            [% IF lang == 'sv-SE' %]
-                [% T.configure_13 %]
-            [% ELSIF lang == 'fi-FI' %]
-                [% T.configure_14 %]
-            [% ELSE %]
-                [% T.configure_15 %]
-            [% END %]
+            [% T.configure_6 %]
         </label>
         <input type="text" name="config_param_a" value="[% config_param_a %]" />
         </p>
@@ -83,13 +47,7 @@
 
     <p>
         <h5>
-            [% IF lang == 'sv-SE' %]
-                [% T.configure_16 %]
-            [% ELSIF lang == 'fi-FI' %]
-                [% T.configure_17 %]
-            [% ELSE %]
-                [% T.configure_18 %]
-            [% END %]
+            [% T.configure_7 %]
         </h5>
         [% IF last_upgraded %]
             [% IF lang == 'sv-SE' %]
@@ -100,13 +58,7 @@
                 Plugin was last upgraded on this system on [% last_upgraded | $KohaDates with_hours => 1 %]
             [% END %]
         [% ELSE %]
-            [% IF lang == 'sv-SE' %]
-                [% T.configure_19 %]
-            [% ELSIF lang == 'fi-FI' %]
-                [% T.configure_20 %]
-            [% ELSE %]
-                [% T.configure_21 %]
-            [% END %]
+            [% T.configure_8 %]
         [% END %]
     </p>
 </div>
